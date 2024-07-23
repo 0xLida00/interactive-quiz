@@ -59,6 +59,23 @@ button:hover {
     text-align: center;
 }
 
+.start-quiz-link {
+    display: block;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.start-quiz-link:hover {
+    background: #0056b3;
+    font-size: 1.4em;
+    color: greenyellow;
+}
+
 .welcome-container {
     background: rgba(255, 255, 255, 0.91);
     border-radius: 8px;
@@ -79,19 +96,37 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.start-quiz-link {
-    display: block;
-    background: #007bff;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    text-decoration: none;
+.quiz-container {
+    background: rgba(255, 255, 255, 0.91);
+    border-radius: 8px;
+    box-shadow: 0 0 10px black;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
     text-align: center;
-    font-size: 1.2em;
 }
 
-.start-quiz-link:hover {
-    background: #0056b3;
-    font-size: 1.4em;
-    color: greenyellow;
+#question {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: darkblue;
+}
+
+#next-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#next-btn:hover {
+    background: #218838;
+}
+
+#score-container {
+    font-size: 1.2em;
+    color: #333;
 }
