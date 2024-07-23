@@ -180,6 +180,20 @@ let questions = [
 let currentQuestionIndex = 0;
 let score = 0;
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    questions = shuffle(questions);
+    loadQuestion();
+    document.getElementById('next-btn').addEventListener('click', nextQuestion);
+});
+
 function loadQuestion() {
     
     const questionContainer = document.getElementById('question-container');
@@ -190,6 +204,24 @@ function loadQuestion() {
     answerButtons.forEach((btn, index) => {
         btn.textContent = questionData.answers[index];
         btn.onclick = () => checkAnswer(questionData.answers[index], btn);
+    });
+}
+
+function checkAnswer(selectedAnswer, btn) {
+    const questionData = questions[currentQuestionIndex];
+    if (selectedAnswer === questionData.correct) {
+        btn.style.backgroundColor = '#28a745';
+        score++;
+    } else {
+        btn.style.backgroundColor = '#dc3545';
+    }
+    document.getElementById('score').textContent = score;
+    disableButtons();
+}
+
+function disableButtons() {
+    document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = true;
     });
 }
 
