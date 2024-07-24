@@ -179,6 +179,8 @@ let questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+let timeLeft = 30; // Time limit for each question in seconds
+let timer = null;
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -194,7 +196,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('next-btn').addEventListener('click', nextQuestion);
 });
 
+function startTimer() {
+    timeLeft = 30;
+    document.getElementById('time').textContent = timeLeft;
+    timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById('time').textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            nextQuestion();
+        }
+    });
+}
+
+function stopTimer() {
+    clearInterval(timer);
+}
+
 function loadQuestion() {
+    stopTimer();
+    startTimer();
     
     const questionContainer = document.getElementById('question-container');
     const questionData = questions[currentQuestionIndex];
@@ -217,6 +238,7 @@ function checkAnswer(selectedAnswer, btn) {
     }
     document.getElementById('score').textContent = score;
     disableButtons();
+    stopTimer();
 }
 
 function disableButtons() {
@@ -243,6 +265,7 @@ function nextQuestion() {
 }
 
 function endQuiz() {
+    stopTimer();
     const quizContainer = document.querySelector('.quiz-container');
     quizContainer.innerHTML = `
         <h2>Quiz Completed!</h2>
