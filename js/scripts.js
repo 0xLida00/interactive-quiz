@@ -206,7 +206,7 @@ function startTimer() {
             clearInterval(timer);
             nextQuestion();
         }
-    });
+    }, 1000);
 }
 
 function stopTimer() {
@@ -272,5 +272,25 @@ function endQuiz() {
         <p>Thank you for taking the quiz! And we hope you enjoyed it. Feel free to try again as many times as you want.</p>
         <h2>Your score: ${score} out of ${questions.length}</h2>
         <button onclick="location.reload()">Restart Quiz</button>
+        <form id="feedback-form">
+            <h3>Submit a Feedback</h3>
+            <textarea id="feedback" rows="4" cols="50" placeholder="Enter your feedback here..."></textarea><br>
+            <div class="form-buttons">
+                <button type="submit">Submit Feedback</button>
+                <a href="index.html" class="home-link">Home</a>
+            </div>
+        </form>
     `;
+    document.getElementById('feedback-form').addEventListener('submit', submitFeedback);
+}
+
+function submitFeedback(event) {
+event.preventDefault();
+const feedback = document.getElementById('feedback').value;
+if (feedback) {
+    alert("Thank you for your feedback!");
+    document.getElementById('feedback').value = "";
+} else {
+    alert("Please enter your feedback before submitting.");
+}
 }

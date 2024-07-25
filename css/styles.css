@@ -133,6 +133,12 @@ button:hover {
     color: darkblue;
 }
 
+#answers {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
 #next-btn {
     background: #28a745;
     color: white;
