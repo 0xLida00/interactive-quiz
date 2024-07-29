@@ -7,7 +7,7 @@ body {
     margin: 0;
 }
 
-body, .quiz-container, .welcome-container, .index-container {
+body, .index-container, .welcome-container, .quiz-container {
     background-image: url('../images/background.png');
     background-size: cover;
 }
@@ -127,6 +127,21 @@ button:hover {
     color: greenyellow;
 }
 
+.home-link {
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.home-link:hover {
+    background: #0056b3;
+    font-size: 1.4em;
+    color: greenyellow;
+}
+
 #question {
     font-size: 1.6em;
     margin-bottom: 20px;
@@ -166,4 +181,39 @@ button:hover {
     font-size: 30px;
     font-weight: bold;
     background-color: lightcyan;
+}
+
+#feedback-form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#feedback {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#feedback-form .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#feedback-form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#feedback-form button:hover {
+    background: #0056b3;
+    font-size: 1.4em;
+    color: greenyellow;
 }

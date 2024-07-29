@@ -177,11 +177,6 @@ let questions = [
     }
 ];
 
-let currentQuestionIndex = 0;
-let score = 0;
-let timeLeft = 30; // Time limit for each question in seconds
-let timer = null;
-
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -190,8 +185,14 @@ function shuffle(array) {
     return array;
 }
 
+let selectedQuestions = shuffle(questions).slice(0, 25);
+
+let currentQuestionIndex = 0;
+let score = 0;
+let timeLeft = 30; // Time limit for each question in seconds
+let timer = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-    questions = shuffle(questions);
     loadQuestion();
     document.getElementById('next-btn').addEventListener('click', nextQuestion);
 });
@@ -217,19 +218,21 @@ function loadQuestion() {
     stopTimer();
     startTimer();
     
-    const questionContainer = document.getElementById('question-container');
-    const questionData = questions[currentQuestionIndex];
+    const questionData = selectedQuestions[currentQuestionIndex];
 
-    document.getElementById('question').textContent = questionData.question;
+    document.getElementById('question').textContent = `${currentQuestionIndex + 1}. ${questionData.question}`;
     const answerButtons = document.querySelectorAll('.answer-btn');
     answerButtons.forEach((btn, index) => {
         btn.textContent = questionData.answers[index];
+        btn.disabled = false;
+        btn.style.backgroundColor = '#007bff';
         btn.onclick = () => checkAnswer(questionData.answers[index], btn);
     });
+    document.getElementById(`question-number`).textContent = `Question ${currentQuestionIndex + 1} of ${selectedQuestions.length}`;
 }
 
 function checkAnswer(selectedAnswer, btn) {
-    const questionData = questions[currentQuestionIndex];
+    const questionData = selectedQuestions[currentQuestionIndex];
     if (selectedAnswer === questionData.correct) {
         btn.style.backgroundColor = '#28a745';
         score++;
@@ -247,17 +250,9 @@ function disableButtons() {
     });
 }
 
-function enableButtons() {
-    document.querySelectorAll('.answer-btn').forEach(btn => {
-        btn.disabled = false;
-        btn.style.backgroundColor = '#007bff';
-    });
-}
-
 function nextQuestion() {
     currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        enableButtons();
+    if (currentQuestionIndex < selectedQuestions.length) {
         loadQuestion();
     } else {
         endQuiz();
@@ -270,7 +265,7 @@ function endQuiz() {
     quizContainer.innerHTML = `
         <h2>Quiz Completed!</h2>
         <p>Thank you for taking the quiz! And we hope you enjoyed it. Feel free to try again as many times as you want.</p>
-        <h2>Your score: ${score} out of ${questions.length}</h2>
+        <h2>Your score: ${score} out of ${selectedQuestions.length}</h2>
         <button onclick="location.reload()">Restart Quiz</button>
         <form id="feedback-form">
             <h3>Submit a Feedback</h3>
@@ -285,12 +280,12 @@ function endQuiz() {
 }
 
 function submitFeedback(event) {
-event.preventDefault();
-const feedback = document.getElementById('feedback').value;
-if (feedback) {
-    alert("Thank you for your feedback!");
-    document.getElementById('feedback').value = "";
-} else {
-    alert("Please enter your feedback before submitting.");
-}
+    event.preventDefault();
+    const feedback = document.getElementById('feedback').value;
+    if (feedback) {
+        alert("Thank you for your feedback!");
+        document.getElementById('feedback').value = "";
+    } else {
+        alert("Please enter your feedback before submitting.");
+    }
 }
