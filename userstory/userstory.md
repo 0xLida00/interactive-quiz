@@ -18,6 +18,7 @@ My score is updated accordingly.
 # 4- Navigating Through Questions:
 I have selected an answer for the current question. I click the "Next" button to move to the next option.
 The next question is then displayed and the score is updated to reflect current progress.
+I can also see the rank of the question being displayed to track my progress.
 
 # 5- Timer Functionality:
 A question is displayed with a timer when the quiz starts.
