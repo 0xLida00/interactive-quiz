@@ -22,7 +22,7 @@ The Interactive Quiz App is a web-based application designed to test and enhance
 
 1. **Visit the Home Page**:
     - Open your web browser and navigate to the following URL:
-    [About the Interactive Quiz App](https://url/index.html)
+    [About the Interactive Quiz App](https://0xlida00.github.io/interactive-quiz/index.html)
 
 2. **Start your Quiz Journey**:
     - Read the instructions to get familiar with the app.
